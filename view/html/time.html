@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta httpequiv="ContentType" content="text/html;charset=utf8">
+  <script src="/js/time.js"></script>
+  <link href="/css/time.css" rel="stylesheet">
+  <title>Time Task</title>
+</head>
+
+<body>
+  <div class="styles">
+    <h3> Title: {{ .task.TaskName }} </h3>
+    <div class="time">
+      <h1> <span id="currentTimeText"></span> </h1>
+      <!-- <h1> <span id="startTime"></span> </h1> -->
+      <!-- <h1> <span id="diffTime"></span> </h1> -->
+      <!-- <h1> aaa <span id="diffTimeText"></span> </h1> -->
+      <h1> {{ .task.Time }} </h1>
+    </div>
+    <button type="button">
+      start
+    </button>
+    <form action="/" method="post">
+      <input type="text" name="TaskName" value="{{ .param.TaskName }}" placeholder="Input Title">
+      <button type="submit"> submit </button>
+    </form>
+  </div>
+  <!-- <h1> aaa <span id="diffTimeText"></span> </h1> -->
+</body>
+
+</html>
