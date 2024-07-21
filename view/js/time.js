@@ -1,6 +1,34 @@
+let v_status = false;
+
 let v_startTime = new Date();
 let v_currentTime = new Date();
 let v_diffTime;
+let v_sumTime;
+
+let e_statusButton;
+let e_startTime;
+let e_startTimeText;
+let e_curentTime;
+let e_currentTimeText;
+let e_diffTimeText;
+
+window.onload = function () {
+  document.createElement("statusButton");
+  document.createElement("startTime");
+  document.createElement("startTimeText");
+  document.createElement("curentTime");
+  document.createElement("currentTimeText");
+  document.createElement("diffTimeText");
+
+  e_statusButton = document.getElementById("statusButton");
+  e_startTime = document.getElementById("startTime");
+  e_startTimeText = document.getElementById("startTimeText");
+  e_curentTime = document.getElementById("curentTime");
+  e_currentTimeText = document.getElementById("currentTimeText");
+  e_diffTimeText = document.getElementById("diffTimeText");
+
+  startTime()
+}
 
 function showTime(t) {
   function fix(t) {
@@ -19,18 +47,17 @@ function showTime(t) {
 function startTime() {
   v_startTime = new Date();
 
-  document.getElementById("startTimeText").innerText = showTime(v_startTime);
-  document.getElementById("startTime").innerText = v_startTime;
+  e_startTimeText.innerText = showTime(v_startTime);
+  e_startTime.innerText = v_startTime;
 }
-window.addEventListener("load", startTime);
 
 function currentTime() {
   v_currentTime = new Date();
 
-  document.getElementById("currentTimeText").innerText = showTime(v_currentTime);
-  document.getElementById("currentTime").innerText = v_currentTime;
+  e_currentTimeText.innerText = showTime(v_currentTime);
+  e_curentTime.innerText = v_currentTime;
 }
-setInterval('currentTime()', 500);
+setInterval('currentTime()', 1000);
 
 function diffTime() {
   function diff() {
@@ -54,24 +81,18 @@ function diffTime() {
     const dH = check(Math.floor(d / (60 * 60)));
     const dM = check(Math.floor(d / 60) % 60);
     const dS = check(d % 60);
-    
+
     let ans = dS;
     if (dH !== 0) {
       ans = dH + ":" + fix(dM) + ":" + fix(dS)
-      
+
     } else {
-        ans = dM + ":" + fix(dS)
+      ans = dM + ":" + fix(dS)
     }
 
     return ans;
   }
 
-  document.getElementById("diffTimeText").innerText = diff();
+  e_diffTimeText.innerText = diff();
 }
-setInterval('diffTime()', 500);
-
-
-// window.addEventListener("DOMContentLoaded", function() {
-//   currentTime();
-// });
-// window.onload = startTime;
+setInterval('diffTime()', 1000);
