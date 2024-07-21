@@ -3,7 +3,7 @@ let v_status = false;
 let v_startTime = new Date();
 let v_currentTime = new Date();
 let v_diffTime;
-let v_sumTime;
+let v_sumTime = 0;
 
 let e_statusButton;
 let e_startTime;
@@ -28,6 +28,10 @@ window.onload = function () {
   e_diffTimeText = document.getElementById("diffTimeText");
 
   startTime()
+}
+
+function statusButtonStatus() {
+  return (document.getElementById("statusButton").innerText === "stop");
 }
 
 function showTime(t) {
@@ -77,7 +81,10 @@ function diffTime() {
       }
     }
 
-    let d = Math.floor((v_currentTime.getTime() - v_startTime.getTime()) / 1000);
+    if (statusButtonStatus()) {
+      v_sumTime += 1;
+    }
+    let d = v_sumTime;
     const dH = check(Math.floor(d / (60 * 60)));
     const dM = check(Math.floor(d / 60) % 60);
     const dS = check(d % 60);
@@ -89,7 +96,6 @@ function diffTime() {
     } else {
       ans = dM + ":" + fix(dS)
     }
-
     return ans;
   }
 
