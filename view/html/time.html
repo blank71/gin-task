@@ -10,13 +10,18 @@
 
 <body>
   <div class="styles">
+    <!-- <div class="values" style="display: none;">
+      <span id="startTime"></span>
+      <span id="currentTime"></span>
+    </div> -->
     <h3> Title: {{ .task.TaskName }} </h3>
     <div class="time">
       <h1> <span id="currentTimeText"></span> </h1>
+      <h1> <span id="diffTimeText"></span> </h1>
       <!-- <h1> <span id="startTime"></span> </h1> -->
       <!-- <h1> <span id="diffTime"></span> </h1> -->
       <!-- <h1> aaa <span id="diffTimeText"></span> </h1> -->
-      <h1> {{ .task.Time }} </h1>
+      <!-- <h1> {{ .task.Time }} </h1> -->
     </div>
     <button type="button">
       start
@@ -26,6 +31,11 @@
       <button type="submit"> submit </button>
     </form>
   </div>
+  <!-- <h1> a <span id="currentTime" style="display: inline;"></span> </h1>
+  <h1> b <span id="startTime"></span> </h1>
+  <h1> b <span id="startTimeText"></span> </h1>
+  <h1> b <span id="diffTime"></span> </h1> -->
+  <!-- <h1> b <span id="diffTimeText"></span> </h1> -->
   <!-- <h1> aaa <span id="diffTimeText"></span> </h1> -->
 </body>
 

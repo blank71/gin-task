@@ -1,6 +1,6 @@
-let currentTime;
-let startTime;
-let now;
+let v_startTime = new Date();
+let v_currentTime = new Date();
+let v_diffTime;
 
 function showTime(t) {
   function fix(t) {
@@ -17,32 +17,61 @@ function showTime(t) {
 }
 
 function startTime() {
-  now = new Date();
-  document.getElementById("startTime").innerHTML = now;
+  v_startTime = new Date();
+
+  document.getElementById("startTimeText").innerText = showTime(v_startTime);
+  document.getElementById("startTime").innerText = v_startTime;
 }
-// startTime()
+window.addEventListener("load", startTime);
 
 function currentTime() {
-  now = new Date();
+  v_currentTime = new Date();
 
-  document.getElementById("currentTime").innerHTML = Date();
-  document.getElementById("currentTimeText").innerHTML = showTime(now);
+  document.getElementById("currentTimeText").innerText = showTime(v_currentTime);
+  document.getElementById("currentTime").innerText = v_currentTime;
 }
 setInterval('currentTime()', 500);
 
-// function diffTime() {
-//   function diff(currentTime, oldTime) {
-//     return currentTime.getTime() - oldTime.getTime();
-//   }
+function diffTime() {
+  function diff() {
+    function fix(t) {
+      if (t < 10) {
+        return "0" + t;
+      } else {
+        return t;
+      }
+    }
 
-//   if (document.getElementById("currentTime").innerHTML === true) {
-//     const diffTime = diff(currentTime, startTime);
-//     document.getElementById("diffTime").innerHTML = diffTime;
-//     document.getElementById("diffTimeText").innerHTML = showTime(diffTime);
-//   } else {
-//     const diffTime = diff(currentTime, startTime);
-//     document.getElementById("diffTime").innerHTML = diffTime;
-//     document.getElementById("diffTimeText").innerHTML = showTime(diffTime);
-//   }
-// }
-// setInterval('diffTime()', 500);
+    function check(num) {
+      if (num !== NaN) {
+        return num;
+      } else {
+        return num;
+      }
+    }
+
+    let d = Math.floor((v_currentTime.getTime() - v_startTime.getTime()) / 1000);
+    const dH = check(Math.floor(d / (60 * 60)));
+    const dM = check(Math.floor(d / 60) % 60);
+    const dS = check(d % 60);
+    
+    let ans = dS;
+    if (dH !== 0) {
+      ans = dH + ":" + fix(dM) + ":" + fix(dS)
+      
+    } else {
+        ans = dM + ":" + fix(dS)
+    }
+
+    return ans;
+  }
+
+  document.getElementById("diffTimeText").innerText = diff();
+}
+setInterval('diffTime()', 500);
+
+
+// window.addEventListener("DOMContentLoaded", function() {
+//   currentTime();
+// });
+// window.onload = startTime;
