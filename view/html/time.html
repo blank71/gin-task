@@ -23,18 +23,23 @@
       <!-- <h1> aaa <span id="diffTimeText"></span> </h1> -->
       <!-- <h1> {{ .task.Time }} </h1> -->
     </div>
-    <button type="button" id="statusButton" value=false> start </button>
-    <script>
-      let st = document.getElementById("statusButton");
-      st.addEventListener("click", function () {
-        if (st.innerText == "start") {
-          st.textContent = "stop";
-        } else {
-          st.textContent = "start";
-        }
-      });
-    </script>
-    <form action="/" method="post">
+    <div>
+      <button type="button" id="statusButton" value=false> start </button>
+      <form id="post" action="/post" method="post">
+        <button type="submit"> post </button>
+      </form>
+      <script>
+        let st = document.getElementById("statusButton");
+        st.addEventListener("click", function () {
+          if (st.innerText == "start") {
+            st.textContent = "stop";
+          } else {
+            st.textContent = "start";
+          }
+        });
+      </script>
+    </div>
+    <form action="/taskname" method="post">
       <input type="text" name="TaskName" value="{{ .param.TaskName }}" placeholder="Input Title">
       <button type="submit"> submit </button>
     </form>

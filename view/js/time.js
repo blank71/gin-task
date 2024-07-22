@@ -102,3 +102,15 @@ function diffTime() {
   e_diffTimeText.innerText = diff();
 }
 setInterval('diffTime()', 1000);
+
+document.getElementById("post").addEventListener("submit", function(event) {
+  let hide = document.createElement("input");
+  hide.setAttribute("type", "hidden");
+  hide.setAttribute("name", "sumTime");
+  hide.setAttribute("value", v_sumTime);
+  this.appendChild(hiddenField);
+})
+
+function post() {
+  document.getElementById("post")
+}

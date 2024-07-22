@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"net/http"
+	"strconv"
 	"time"
 	controller "web/controller"
 	model "web/model"
@@ -19,9 +22,9 @@ func main() {
 		TaskName:  "taskname",
 		CreateAt:  time.Now(),
 		UpdateAt:  time.Now(),
-		Time:      time.Second * 30,
+		Time:      time.Second * 0,
 		Parent:    0,
-		TotalTime: time.Second * 20,
+		TotalTime: time.Second * 0,
 	}
 	model.AddUser(u)
 	model.AddTask(t)
@@ -35,12 +38,24 @@ func main() {
 	engine.GET("/", func(ctx *gin.Context) {
 		controller.ShowTimePage(ctx, u.UserId, t.ID)
 	})
-	engine.POST("/", func(ctx *gin.Context) {
+
+	engine.POST("/taskname", func(ctx *gin.Context) {
 		taskName := ctx.PostForm("TaskName")
+		fmt.Println("/taskname:", taskName)
 		t.TaskName = taskName
-		t.UpdateAt = time.Now()
 		model.UpdateTask(t)
-		controller.ShowTimePage(ctx, u.UserId, t.ID)
+		ctx.Redirect(http.StatusFound, "/")
+		// controller.ShowTimePage(ctx, u.UserId, t.ID)
+	})
+
+	engine.POST("/post", func(ctx *gin.Context) {
+		sumTime, _ := strconv.Atoi(ctx.PostForm("sumTime"))
+		fmt.Println(ctx.PostForm("sumTime"))
+		fmt.Println("post:", sumTime)
+		t.TotalTime = (time.Second * time.Duration(sumTime))
+		model.UpdateTask(t)
+		ctx.Redirect(http.StatusFound, "/")
+		// controller.ShowTimePage(ctx, u.UserId, t.ID)
 	})
 
 	engine.Run(":8080")

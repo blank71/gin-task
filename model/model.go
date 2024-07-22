@@ -53,11 +53,13 @@ func GetUser(id int) (user User) {
 }
 
 func AddTask(t Task) {
+	t.UpdateAt = time.Now()
 	db := openDB()
 	db.Save(&t)
 }
 
 func UpdateTask(t Task) {
+	t.UpdateAt = time.Now()
 	db := openDB()
 	db.Save(&t)
 }
