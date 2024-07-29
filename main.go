@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -41,7 +40,7 @@ func main() {
 
 	engine.POST("/taskname", func(ctx *gin.Context) {
 		taskName := ctx.PostForm("TaskName")
-		fmt.Println("/taskname:", taskName)
+		// fmt.Println("/taskname:", taskName)
 		t.TaskName = taskName
 		model.UpdateTask(t)
 		ctx.Redirect(http.StatusFound, "/")
@@ -50,8 +49,8 @@ func main() {
 
 	engine.POST("/post", func(ctx *gin.Context) {
 		sumTime, _ := strconv.Atoi(ctx.PostForm("sumTime"))
-		fmt.Println(ctx.PostForm("sumTime"))
-		fmt.Println("post:", sumTime)
+		// fmt.Println(ctx.PostForm("sumTime"))
+		// fmt.Println("post:", sumTime)
 		t.TotalTime = (time.Second * time.Duration(sumTime))
 		model.UpdateTask(t)
 		ctx.Redirect(http.StatusFound, "/")
